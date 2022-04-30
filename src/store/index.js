@@ -1,4 +1,4 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import MessagesReducer from "./slices/messagesSlice";
 
 const rootReducer = combineReducers({
@@ -8,7 +8,10 @@ const rootReducer = combineReducers({
 export const setupStore = () => {
     return configureStore(
         {
-            reducer: rootReducer
+            reducer: rootReducer,
+            middleware: getDefaultMiddleware({
+                serializableCheck: false,
+              }),
         }
     )
 }
