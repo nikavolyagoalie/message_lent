@@ -10,6 +10,12 @@ const initialState = {
 export const messagesSlice = createSlice({
     name: 'messages',
     initialState,
+    reducers: {
+        toggleFavorite: (state, action) => {
+            const idx = state.findIndex(newsItem => newsItem.id === action.payload.id)
+            state[idx].favorite = action.payload.favorite
+        }
+    },
     extraReducers: {
         [fetchMessages.fulfilled.type]: (state, action) => {
             state.isLoading = false;
@@ -26,5 +32,5 @@ export const messagesSlice = createSlice({
     }
 })
 
-// export const {} = messagesSlice.actions;
+export const { toggleFavorite } = messagesSlice.actions;
 export default messagesSlice.reducer;

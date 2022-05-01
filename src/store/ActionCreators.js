@@ -15,7 +15,11 @@ export const fetchMessages = createAsyncThunk(
                 headers: { "Content-Type": "multipart/form-data" },
             })
             console.log(res);
-            return res
+
+            let news = Object.values(res.data.Messages).map(item => ({...item, favorite: false}))
+            console.log(news)
+            
+            return news
         } catch (error) {
             return thunkAPI.rejectWithValue("Ошибка загрузки")
         }
