@@ -12,7 +12,12 @@ function App() {
   })
 
   useEffect(() => {
-    setInterval(() => dispatch(fetchMessages()), 5000)
+    dispatch(fetchMessages())
+    // setInterval(() => dispatch(fetchMessages()), 5000)
+
+    return () => {
+      clearInterval()
+    }
   }, [])
 
   // let { Messages } = messages.data
@@ -26,7 +31,7 @@ function App() {
         {error && <h1>{error}</h1>}
         <ul>
         {
-            Object.values(messages.data.Messages).map(item => <li>{item.content}</li>)
+            messages?.data?.Messages && Object.values(messages.data.Messages).map(item => <li key={item.id}>{item.content}</li>)
           }
         </ul>
       </div>
