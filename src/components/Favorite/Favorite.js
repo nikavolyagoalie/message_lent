@@ -1,24 +1,24 @@
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import messagesSlice from "../../store/slices/messagesSlice";
 
-const Favorite = ({ checked }) => {
+const Favorite = ({ checked, id }) => {
     const [isChecked, setIsChecked] = useState(checked);
 
-    useEffect(() => {
-        setIsChecked(JSON.parse(window.localStorage.getItem('isChecked')));
-    }, []);
+    const dispatch = useDispatch()
 
-    useEffect(() => {
-        window.localStorage.setItem('isChecked', isChecked);
-    }, [isChecked]);
+    const toggleFavorite = () => {
+        setIsChecked(!isChecked)
+
+        // dispatch(messagesSlice({id, favorite: !checked}))
+    }
 
     return (
         <label>
             <input
                 type="checkbox"
                 checked={isChecked}
-                onChange={() => {
-                    setIsChecked(!isChecked);
-                }}
+                onChange={toggleFavorite}
             />
             <svg
                 width="24"

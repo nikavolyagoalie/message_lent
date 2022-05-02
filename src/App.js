@@ -12,15 +12,17 @@ function App() {
     return state.MessagesReducer
   })
 
+  // const favorites  = useSelector(state => state.FavoritesReducer)
+
   useEffect(() => {
     dispatch(fetchMessages())
 
-    //обновление данных каждые 5 сек
-    setInterval(() => dispatch(fetchMessages()), 5000)
+    // обновление данных каждые 5 сек
+    // setInterval(() => dispatch(fetchMessages()), 5000)
 
-    return () => {
-      clearInterval()
-    }
+    // return () => {
+    //   clearInterval()
+    // }
   }, [])
 
   const sortNews = (e) => {
@@ -42,7 +44,7 @@ function App() {
           <button onClick={sortNews}>{!beginNew ? "Сначала новые" : "Сначала старые"}</button>
         </div>
         <div className='news'>
-          {isLoading && <h1>Messages download...</h1>}
+          {/* {isLoading && <h1>Messages download...</h1>} */}
           {error && <h1>{error}</h1>}
           <ul>
             {
